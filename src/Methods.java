@@ -12,29 +12,31 @@ public class Methods {
 	}
 
 	int square(int number) {
-		return number*number;
+		firstMethod();
+		return number * number;
 	}
 
-	
-	//ulepszyc zeby mozna bylo wybrac ilosc kolumn i bokow
+	// ulepszyc zeby mozna bylo wybrac ilosc kolumn i bokow
 	void arrayFiveXFive() {
 		int i;
 		int j;
-		int [][] fiveXFive = new int[5][5];
-		for (i=0; i<5; i++) {
-			for (j=0; j<5; j++) {
-				fiveXFive[i][j] = j+1;
-				System.out.print((i+1)+","+fiveXFive[i][j]+" ");
+		String[][] fiveXFive = new String[5][5];
+		// fiveXFive[0] = new String[7]
+		for (i = 0; i < fiveXFive.length; i++) {
+			for (j = 0; j < fiveXFive[0].length; j++) {
+				fiveXFive[i][j] = (i + 1) + "," + (j + 1);
+				System.out.print(fiveXFive[i][j] + " ");
 			}
 			System.out.println();
-			
+
 		}
-	} 
-	void print5x5x5 () {
-		for(int i=1;i<6;i++) {
-			for (int j=1;j<6;j++) {
-				for (int k=1;k<6;k++) {
-					System.out.print(i+","+j+","+k+" ");
+	}
+
+	void print5x5x5() {
+		for (int i = 1; i < 6; i++) {
+			for (int j = 1; j < 6; j++) {
+				for (int k = 1; k < 6; k++) {
+					System.out.print(i + "," + j + "," + k + " ");
 				}
 				System.out.println();
 			}
@@ -42,11 +44,41 @@ public class Methods {
 			System.out.println();
 		}
 	}
-	
-	double mean (int one, int two, int three) {
-		return (double)(one+two+three)/3;
+
+	double mean(int one, int two, int three) {
+		return (double) (one + two + three) / 3;
 	}
-	int charToInt (char letter) {
-		return (int)letter;
+
+	int charToInt(char letter) {
+		return (int) letter;
+	}
+	
+	void fooBar () {
+//		for (int i = 1; i<=100; i++) {
+//			if (i % 3 == 0) {
+//				System.out.print("Foo");
+//			} 
+//			if (i % 5 == 0) {
+//				System.out.print("Bar");
+//			}
+//			if (i % 3 != 0 && i % 5 != 0)  {
+//				System.out.print(i);
+//			}
+//			System.out.println();
+//		}
+		int i = 1;
+		while (i <=100) {
+			if (i % 3 == 0) {
+				System.out.print("Foo");
+			} 
+			if (i % 5 == 0) {
+				System.out.print("Bar");
+			}
+			if (i % 3 != 0 && i % 5 != 0)  {
+				System.out.print(i);
+			}
+			System.out.println();
+			i++;
+		}
 	}
 }
