@@ -16,8 +16,9 @@ public class Main {
 		m.arrayFiveXFive();
 		System.out.println();
 		m.print5x5x5();
-		//dlaczego tutaj sie drukuja pelne?
-		System.out.println(m.mean(3, 2, 2));
+		System.out.println(m.mean(3, 2, 6));
+		System.out.println(m.charToInt('a'));
+		
 	}
 
 }

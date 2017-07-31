@@ -44,6 +44,9 @@ public class Methods {
 	}
 	
 	double mean (int one, int two, int three) {
-		return (one+two+three)/3;
+		return (double)(one+two+three)/3;
+	}
+	int charToInt (char letter) {
+		return (int)letter;
 	}
 }
