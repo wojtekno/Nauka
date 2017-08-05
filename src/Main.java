@@ -34,7 +34,7 @@ public class Main {
 //		//nie mozna bo private
 ////		maluch.fuel = 100;
 		System.out.println(maluch.getTypeOfGas());
-		System.out.println(maluch.getFuel());
+		System.out.println("You have" + maluch.getFuel() + " l of fuel");
 //		maluch.setMaxCappacityOfTank(45);
 		maluch.printSpec();
 		
