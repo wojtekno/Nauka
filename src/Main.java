@@ -38,10 +38,12 @@ public class Main {
 //		maluch.setMaxCappacityOfTank(45);
 		maluch.printSpec();
 		
-		maluch.tankYourCar("GAZ", 7);
+		maluch.tank("GAZ", 7);
 		
-		
-		
+		Car ferrari = new Car();
+		CarFactory carFactory = new CarFactory();
+		Car blackFerrari = carFactory.makeFerrari();
+		blackFerrari.printSpec();
 	}
 
 }
