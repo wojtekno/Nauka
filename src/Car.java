@@ -17,10 +17,17 @@ public class Car {
 		engine = new Engine();
 		engine.setCylinders(cylinders); 
 	}
+	
+	public String toString() {
+		return "Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" 
+				+ "Fuel: " + fuel + "\n" + "Type of gas: " + engine.getTypeOfGas() + "\n" 
+				+ "number of cylinders: " + engine.getCylinders();
+	}
 
 	void printSpec() {
-		System.out.println("Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" + "Fuel: " + fuel + "\n"
-				+ "Type of gas: " + engine.getTypeOfGas() + "number of cylinders: " + engine.getCylinders());
+		System.out.println("Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" 
+				+ "Fuel: " + fuel + "\n" + "Type of gas: " + engine.getTypeOfGas() + "\n" 
+				+ "number of cylinders: " + engine.getCylinders());
 	}
 
 	// getter
@@ -61,10 +68,5 @@ public class Car {
 	}
 }
 
-// zrob funkcje tankuj(pomysl co bedzie przyjmowac i zwracac)
-// jesli tankujesz to dodajesz
-// ma capacity (zatankowales 35 ltr)
-// naleznosc za paliwo
-// car - benzyna/gaz/ropa
-// komunikat z odpowiednia benzyna
+
 // string sie nieporuwnje "==" tylko ".equals"

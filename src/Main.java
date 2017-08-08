@@ -1,12 +1,13 @@
+import java.util.Random;
 
 public class Main {
-			// static - nie musi miec obiektu, uzywa sie do klas util
-	
+	// static - nie musi miec obiektu, uzywa sie do klas util
+
 	public static void main(String[] args) {
-		//literał
-		 int someNumber = 8;
-		//Typ silny, 
-		// Integer 
+		// literał
+		int someNumber = 8;
+		// Typ silny,
+		// Integer
 		// Methods m = new Methods();
 		// m.firstMethod();
 		// m.firstMethod();
@@ -22,28 +23,42 @@ public class Main {
 		// System.out.println(m.mean(3, 2, 6));
 		// System.out.println(m.charToInt('a'));
 		// m.fooBar();
-//		//
+		// //
 		Car maluch = new Car();
-//		maluch.printSpec();
-//		maluch.color = "yellow";
-//		maluch.printSpec();
-//		System.out.println(maluch.color);
-//		//po kropce jest czyms innym
-//		maluch.color.concat("asd").contains(maluch.color);
-//		System.out.println(maluch);
-//		//nie mozna bo private
-////		maluch.fuel = 100;
-		System.out.println(maluch.getTypeOfGas());
-		System.out.println("You have" + maluch.getFuel() + " l of fuel");
-//		maluch.setMaxCappacityOfTank(45);
-		maluch.printSpec();
-		
-		maluch.tank("GAZ", 7);
-		
-		Car ferrari = new Car();
+		// maluch.printSpec();
+		// maluch.color = "yellow";
+		// maluch.printSpec();
+		// System.out.println(maluch.color);
+		// //po kropce jest czyms innym
+		// maluch.color.concat("asd").contains(maluch.color);
+		// System.out.println(maluch);
+		// //nie mozna bo private
+		//// maluch.fuel = 100;
+		// System.out.println(maluch.getTypeOfGas());
+		// System.out.println("You have" + maluch.getFuel() + " l of fuel");
+		// maluch.setMaxCappacityOfTank(45);
+		// maluch.printSpec();
+
+		// maluch.tank("GAZ", 7);
+
+		System.out.println(maluch);
+//		Car ferrari = new Car();
+//		System.out.println(ferrari);
 		CarFactory carFactory = new CarFactory();
 		Car blackFerrari = carFactory.makeFerrari();
-		blackFerrari.printSpec();
+//		blackFerrari.printSpec();
+		System.out.println(blackFerrari);
+		Car trabant = carFactory.makeTrabant();
+		System.out.println(trabant);
+		// toString.maluch;
+		Tires tires = new Tires();
+		tires.random();
+		Random generator = new Random();
+		double number = 1 + generator.nextDouble() * 0.1;
+		System.out.println(number);
+		
+		System.out.println(tires);
+		
 	}
 
 }

@@ -27,8 +27,8 @@ public class Engine {
 		return cylinders;
 	}
 }
-//
-// overloading toString
+// po kiego grzyba override toString - nie mońza poprostu zamiast sysout(objecy) stworzyć printSpec - body jest takie samo!
+// overloading toString  https://stackoverflow.com/questions/3615721/how-to-use-the-tostring-method-in-java
 //stworz klase komputer pokladowy, ktory ma metode - olac to
 //tablica kol samochodu, ich parametr - ile jeszcze przezyja w %?
 //metoda drive w car ktora przyjmuje odleglosc do przejechania, przelicznik paliwa, czy przejedziesz, ile spaliles

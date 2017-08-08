@@ -8,5 +8,9 @@ public class CarFactory {
 		return ferrari;
 	}
 
-//	Car makeShittyCar 
+	Car makeTrabant() {
+		Car trabant = new Car(80, 3);
+		return trabant;
+	}
+	
 }
