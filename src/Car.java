@@ -5,17 +5,24 @@ public class Car {
 	private double fuel;
 	String color;
 	private Engine engine;
+	private Tires tires;
+	public double distanceDriven; 
 	
 	Car() {
 		maxCapacityOfTank = 50;
 		fuel = 29;
 		color = "blue";
 		engine = new Engine();
+		tires = new Tires();
+		distanceDriven = 20;
+		
 	}
 	Car(double maxCapacityOfTank, int cylinders) {
 		this.maxCapacityOfTank = maxCapacityOfTank;
 		engine = new Engine();
+		tires = new Tires();
 		engine.setCylinders(cylinders); 
+		fuel = 35;
 	}
 	
 	public String toString() {
@@ -64,6 +71,20 @@ public class Car {
 			}
 		} else {
 			System.out.println("you want to put wrong type of gas.\n" + "Try " + engine.getTypeOfGas());
+		}
+	}
+	
+	void drive(int distanceToGo) {
+		if (this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100) && tires.tireEndurance > (distanceToGo * tires.tireWearOff[0]) ) {
+			this.distanceDriven =  + distanceToGo ;
+			System.out.println("You are driving. Have a safe trip");
+			System.out.println("You're at your destination. Thank you for a nice ride");
+		} else if(this.fuel < ((distanceToGo * engine.fuelBurningFactor) / 100) && tires.tireEndurance < ((double)distanceToGo * tires.tireWearOff[0]) ){
+			System.out.println("You dont have enough gasoline, and your tires aren't strong enough");
+		} else if (this.fuel < (distanceToGo * engine.fuelBurningFactor) / 100) {
+			System.out.println("Not enough fuel");
+		} else {
+			System.out.println("Your tires to old");
 		}
 	}
 }

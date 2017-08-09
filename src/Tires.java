@@ -3,20 +3,23 @@ import java.util.Random;
 public class Tires {
 	String size;
 	double[] tireWearOff;
-	Random wearOffFactor;
+	Random generator;
 	double a;
 	double b;
+	int tireEndurance;
 
 	Tires() {
 		this.size = "XL";
 		tireWearOff = new double[4];
-		wearOffFactor = new Random();
+		generator = new Random();
 		for (int i = 0; i < 4; i++) {
-			tireWearOff[i] = 1 + wearOffFactor.nextDouble() * 0.1 ;
+			tireWearOff[i] = 1 + (generator.nextDouble() * 0.1) ;
 
 		}
+		tireEndurance = 20;
 
 	}
+	
 	public String toString () {
 		
 		return "tires' size: " + this.size + "tires' factors:" +  this.tireWearOff[0] + "\n" 
@@ -25,7 +28,6 @@ public class Tires {
 		
 	}
 	
-
 	void random() {
 		a = 1 + Math.random();
 		b = 1 + Math.random();

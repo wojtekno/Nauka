@@ -4,11 +4,13 @@ public class Engine {
 	private int cylinders;
 	private double capacityOfEngine;
 	private String typeOfGas;
+	double fuelBurningFactor;
 	
 	Engine() {
 		cylinders = 4;
 		capacityOfEngine = 3.7;
 		typeOfGas = "ON";
+		fuelBurningFactor = 6.5;
 	}
 	
 	public String getTypeOfGas() {

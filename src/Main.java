@@ -58,7 +58,11 @@ public class Main {
 		System.out.println(number);
 		
 		System.out.println(tires);
-		
+		System.out.println("\n" + "\n");
+		trabant.drive(5);
+		SportsCar sportsCar = new SportsCar();
+		sportsCar.burningTires();
+		sportsCar.
 	}
 
 }
