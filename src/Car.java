@@ -6,35 +6,46 @@ public class Car {
 	String color;
 	private Engine engine;
 	private Tires tires;
-	public double distanceDriven; 
-	
+	private double distanceDriven;
+	double[] wearedOff;
+
 	Car() {
 		maxCapacityOfTank = 50;
 		fuel = 29;
 		color = "blue";
 		engine = new Engine();
 		tires = new Tires();
-		distanceDriven = 20;
-		
+		distanceDriven = 950;
+		wearedOff = new double[4];
+		for (int i = 0; i < 4; i++) {
+			wearedOff[i] = distanceDriven * tires.tireWearOff[i];
+
+		}
+
 	}
+
 	Car(double maxCapacityOfTank, int cylinders) {
 		this.maxCapacityOfTank = maxCapacityOfTank;
 		engine = new Engine();
 		tires = new Tires();
-		engine.setCylinders(cylinders); 
+		engine.setCylinders(cylinders);
 		fuel = 35;
+		distanceDriven = 600;
+		wearedOff = new double[4];
+		for (int i = 0; i < 4; i++) {
+			wearedOff[i] = distanceDriven * tires.tireWearOff[i];
+
+		}
 	}
-	
+
 	public String toString() {
-		return "Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" 
-				+ "Fuel: " + fuel + "\n" + "Type of gas: " + engine.getTypeOfGas() + "\n" 
-				+ "number of cylinders: " + engine.getCylinders();
+		return "Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" + "Fuel: " + fuel + "\n"
+				+ "Type of gas: " + engine.getTypeOfGas() + "\n" + "number of cylinders: " + engine.getCylinders();
 	}
 
 	void printSpec() {
-		System.out.println("Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" 
-				+ "Fuel: " + fuel + "\n" + "Type of gas: " + engine.getTypeOfGas() + "\n" 
-				+ "number of cylinders: " + engine.getCylinders());
+		System.out.println("Capacity: " + maxCapacityOfTank + "\n" + "Color: " + color + "\n" + "Fuel: " + fuel + "\n"
+				+ "Type of gas: " + engine.getTypeOfGas() + "\n" + "number of cylinders: " + engine.getCylinders());
 	}
 
 	// getter
@@ -55,11 +66,18 @@ public class Car {
 		return engine.getTypeOfGas();
 	}
 
+	void getWearedOff() {
+		for (int i = 0; i < 4; i++) {
+			System.out.println("Tyre No: " + i + " is worn " + wearedOff[i]);
+		}
+		System.out.println("out of " + tires.getTireEndurance());
+	}
+
 	void tank(String typeOfGas, int quantityOfGas) {
 		if (typeOfGas.equals(engine.getTypeOfGas())) {
 			if ((maxCapacityOfTank - fuel) < quantityOfGas) {
-				System.out.println( "you could tank only: " 
-						+ (maxCapacityOfTank - this.fuel) + " litres of " + engine.getTypeOfGas());
+				System.out.println("you could tank only: " + (maxCapacityOfTank - this.fuel) + " litres of "
+						+ engine.getTypeOfGas());
 				fuel = maxCapacityOfTank;
 				System.out.println("you did it, and now your tank is full: " + (int) fuel + " litres");
 
@@ -73,21 +91,46 @@ public class Car {
 			System.out.println("you want to put wrong type of gas.\n" + "Try " + engine.getTypeOfGas());
 		}
 	}
-	
+
+	double getDistnaceDriven() {
+		return distanceDriven;
+	}
+
 	void drive(int distanceToGo) {
-		if (this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100) && tires.tireEndurance > (distanceToGo * tires.tireWearOff[0]) ) {
-			this.distanceDriven =  + distanceToGo ;
-			System.out.println("You are driving. Have a safe trip");
-			System.out.println("You're at your destination. Thank you for a nice ride");
-		} else if(this.fuel < ((distanceToGo * engine.fuelBurningFactor) / 100) && tires.tireEndurance < ((double)distanceToGo * tires.tireWearOff[0]) ){
-			System.out.println("You dont have enough gasoline, and your tires aren't strong enough");
-		} else if (this.fuel < (distanceToGo * engine.fuelBurningFactor) / 100) {
-			System.out.println("Not enough fuel");
+		boolean[] conditionArray;
+		conditionArray = new boolean[4];
+		int i = 0;
+
+		if (this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100)) {
+			for (i = 0; i < 4; i++) {
+				conditionArray[i] = (wearedOff[i] + (distanceToGo * tires.tireWearOff[i])) < tires.getTireEndurance();
+				if (conditionArray[i] == false) {
+					System.out.println("Your tires are too old");
+					break;
+				}
+				if (conditionArray[3] == true) {
+					for (i = 0; i < 4; i++) {
+						wearedOff[i] += /* wearedOff[i] + */ (tires.tireWearOff[i] * distanceToGo);
+					}
+					System.out.println("You have " + distanceToGo + "km to go and you will use aprox "
+							+ (distanceToGo * engine.fuelBurningFactor) / 100 + "out of " + this.getFuel()
+							+ " you have now \nHave a nice trip");
+				}
+			}
 		} else {
-			System.out.println("Your tires to old");
+			for (i = 0; i < 4; i++) {
+				conditionArray[i] = (wearedOff[i] + (distanceToGo * tires.tireWearOff[i])) < tires.getTireEndurance();
+				if (conditionArray[i] == false) {
+					System.out.println("Your tires are too old and you don't have enough gas");
+					break;
+				}
+				if (conditionArray[3] == true) {
+					System.out.println("You have don't have enough gas");
+
+				}
+			}
 		}
 	}
 }
-
 
 // string sie nieporuwnje "==" tylko ".equals"

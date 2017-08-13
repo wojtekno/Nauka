@@ -59,10 +59,17 @@ public class Main {
 		
 		System.out.println(tires);
 		System.out.println("\n" + "\n");
-		trabant.drive(5);
+		trabant.drive(80);
+		maluch.drive(150);
+		trabant.getWearedOff();
+		maluch.getWearedOff();
 		SportsCar sportsCar = new SportsCar();
 		sportsCar.burningTires();
-		sportsCar.
+//		sportsCar.
+				System.out.println(tires.tireWearOff);
+		System.out.println(tires.tireWearOff[1]);
+		System.out.println(sportsCar);
+		
 	}
 
 }

@@ -6,36 +6,36 @@ public class Tires {
 	Random generator;
 	double a;
 	double b;
-	int tireEndurance;
+	private int tireEndurance;
 
 	Tires() {
 		this.size = "XL";
 		tireWearOff = new double[4];
 		generator = new Random();
 		for (int i = 0; i < 4; i++) {
-			tireWearOff[i] = 1 + (generator.nextDouble() * 0.1) ;
-
+			tireWearOff[i] = 1 + (generator.nextDouble() * 0.1);
 		}
-		tireEndurance = 20;
+		tireEndurance = 1000;
 
 	}
-	
-	public String toString () {
-		
-		return "tires' size: " + this.size + "tires' factors:" +  this.tireWearOff[0] + "\n" 
-				+ this.tireWearOff[1] + "\n" + this.tireWearOff[2] + "\n" 
-				+ this.tireWearOff[3];
-		
+
+	public String toString() {
+
+		return "tires' size: " + this.size + "tires' factors:" + this.tireWearOff[0] + "\n" + this.tireWearOff[1] + "\n"
+				+ this.tireWearOff[2] + "\n" + this.tireWearOff[3];
+
 	}
-	
+	int getTireEndurance() {
+		return tireEndurance;
+	}
+
 	void random() {
 		a = 1 + Math.random();
 		b = 1 + Math.random();
 		System.out.println(a);
 		System.out.println(b);
 	}
-	// public int nextInt() {
-	// return next(32);
-	// }
+	
+	
 
 }
