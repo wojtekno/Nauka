@@ -1,3 +1,4 @@
+import java.util.Random;
 
 public class Car {
 	// fields
@@ -8,34 +9,44 @@ public class Car {
 	private Tires tires;
 	private double distanceDriven;
 	double[] wearedOff;
-
+	boolean[] conditionArray;
+	boolean condition;
+	double distanceToGo;
+	Random generator;
+	double estimateNumber;
+	//OnBoardComputer time = new OnBoardComputer();
+		
 	Car() {
 		maxCapacityOfTank = 50;
 		fuel = 29;
 		color = "blue";
 		engine = new Engine();
 		tires = new Tires();
-		distanceDriven = 950;
+		conditionArray = new boolean[4];
+		distanceDriven = 850;
 		wearedOff = new double[4];
 		for (int i = 0; i < 4; i++) {
 			wearedOff[i] = distanceDriven * tires.tireWearOff[i];
-
 		}
-
+		generator = new Random();
+		estimateNumber = 1 + 0.1 * generator.nextDouble();
 	}
 
 	Car(double maxCapacityOfTank, int cylinders) {
 		this.maxCapacityOfTank = maxCapacityOfTank;
 		engine = new Engine();
 		tires = new Tires();
+		conditionArray = new boolean[4];
 		engine.setCylinders(cylinders);
 		fuel = 35;
 		distanceDriven = 600;
 		wearedOff = new double[4];
 		for (int i = 0; i < 4; i++) {
 			wearedOff[i] = distanceDriven * tires.tireWearOff[i];
-
+		
 		}
+		generator = new Random();
+		estimateNumber = 1 + 0.1 * generator.nextDouble();
 	}
 
 	public String toString() {
@@ -96,39 +107,44 @@ public class Car {
 		return distanceDriven;
 	}
 
-	void drive(int distanceToGo) {
-		boolean[] conditionArray;
-		conditionArray = new boolean[4];
-		int i = 0;
-
-		if (this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100)) {
-			for (i = 0; i < 4; i++) {
-				conditionArray[i] = (wearedOff[i] + (distanceToGo * tires.tireWearOff[i])) < tires.getTireEndurance();
-				if (conditionArray[i] == false) {
-					System.out.println("Your tires are too old");
-					break;
-				}
-				if (conditionArray[3] == true) {
-					for (i = 0; i < 4; i++) {
-						wearedOff[i] += /* wearedOff[i] + */ (tires.tireWearOff[i] * distanceToGo);
-					}
-					System.out.println("You have " + distanceToGo + "km to go and you will use aprox "
-							+ (distanceToGo * engine.fuelBurningFactor) / 100 + "out of " + this.getFuel()
-							+ " you have now \nHave a nice trip");
-				}
+	boolean ifTiresOk() {
+		for (int i = 0; i < 4; i++) {
+			conditionArray[i] = (wearedOff[i] + (this.distanceToGo * tires.tireWearOff[i])) < tires.getTireEndurance();
+			if (conditionArray[i] == false) {
+				condition = false;
+				break;
+			} else {
+				condition = true;
 			}
+		}
+		return condition;
+	}
+	
+	//convert number to hh:mm
+	void drive(double distanceToGo) {
+		ifTiresOk();
+		
+		if (condition == true && this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100)) {
+			System.out.println("You have " + distanceToGo + "km to go and you will use aprox "
+					+ (distanceToGo * engine.fuelBurningFactor) / 100 + "out of " + this.getFuel()
+					+ " you have now \nHave a nice trip");
+
+			this.fuel -= (distanceToGo * engine.fuelBurningFactor * estimateNumber) / 100;
+			for (int i = 0; i < 4; i++) {
+				wearedOff[i] += this.distanceToGo * tires.tireWearOff[i];
+			}
+			System.out.println("Thank you for safe trip. It took you " + ((distanceToGo / (80 * estimateNumber)))
+					+ "hours.\nYou burnt " + (distanceToGo * engine.fuelBurningFactor * estimateNumber) / 100
+					+ "l of gasoline");
+
 		} else {
-			for (i = 0; i < 4; i++) {
-				conditionArray[i] = (wearedOff[i] + (distanceToGo * tires.tireWearOff[i])) < tires.getTireEndurance();
-				if (conditionArray[i] == false) {
-					System.out.println("Your tires are too old and you don't have enough gas");
-					break;
-				}
-				if (conditionArray[3] == true) {
-					System.out.println("You have don't have enough gas");
-
-				}
+			if (this.fuel < ((distanceToGo * engine.fuelBurningFactor) / 100)) {
+				System.out.println("You don't have enough gas");
 			}
+			if (condition == false) {
+				System.out.println("Your tires are too old");
+			}
+
 		}
 	}
 }

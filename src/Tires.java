@@ -21,7 +21,7 @@ public class Tires {
 
 	public String toString() {
 
-		return "tires' size: " + this.size + "tires' factors:" + this.tireWearOff[0] + "\n" + this.tireWearOff[1] + "\n"
+		return "tires' size: " + this.size + "\ntires' factors:\n" + this.tireWearOff[0] + "\n" + this.tireWearOff[1] + "\n"
 				+ this.tireWearOff[2] + "\n" + this.tireWearOff[3];
 
 	}
