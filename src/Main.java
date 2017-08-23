@@ -31,7 +31,7 @@ public class Main {
 		// System.out.println(maluch.color);
 		// //po kropce jest czyms innym
 		// maluch.color.concat("asd").contains(maluch.color);
-		// System.out.println(maluch);
+		 //System.out.println(maluch);
 		// //nie mozna bo private
 		//// maluch.fuel = 100;
 		// System.out.println(maluch.getTypeOfGas());

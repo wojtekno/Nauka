@@ -14,7 +14,7 @@ public class Car {
 	double distanceToGo;
 	Random generator;
 	double estimateNumber;
-	//OnBoardComputer time = new OnBoardComputer();
+	OnBoardComputer onBC; 
 		
 	Car() {
 		maxCapacityOfTank = 50;
@@ -29,7 +29,8 @@ public class Car {
 			wearedOff[i] = distanceDriven * tires.tireWearOff[i];
 		}
 		generator = new Random();
-		estimateNumber = 1 + 0.1 * generator.nextDouble();
+		estimateNumber = 0.9 + 0.2 * generator.nextDouble();
+		onBC = new OnBoardComputer();
 	}
 
 	Car(double maxCapacityOfTank, int cylinders) {
@@ -46,7 +47,8 @@ public class Car {
 		
 		}
 		generator = new Random();
-		estimateNumber = 1 + 0.1 * generator.nextDouble();
+		estimateNumber = 0.9 + 0.2 * generator.nextDouble();
+		onBC = new OnBoardComputer();
 	}
 
 	public String toString() {
@@ -121,7 +123,7 @@ public class Car {
 	}
 	
 	//convert number to hh:mm
-	void drive(double distanceToGo) {
+	void drive(final double distanceToGo) {
 		ifTiresOk();
 		
 		if (condition == true && this.fuel > ((distanceToGo * engine.fuelBurningFactor) / 100)) {
@@ -133,7 +135,7 @@ public class Car {
 			for (int i = 0; i < 4; i++) {
 				wearedOff[i] += this.distanceToGo * tires.tireWearOff[i];
 			}
-			System.out.println("Thank you for safe trip. It took you " + ((distanceToGo / (80 * estimateNumber)))
+			System.out.println("Thank you for safe trip. It took you " + onBC.makeTime(distanceToGo)
 					+ "hours.\nYou burnt " + (distanceToGo * engine.fuelBurningFactor * estimateNumber) / 100
 					+ "l of gasoline");
 

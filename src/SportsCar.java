@@ -1,5 +1,5 @@
 
-public class SportsCar extends Car {
+public class SportsCar extends Car implements Talking {
 
 	SportsCar() {
 		super();
@@ -12,5 +12,10 @@ public class SportsCar extends Car {
 	void burningTires() {
 		System.out.println("wrrruuuu");
 	}
+	
+	public void sayIt(String something) {
+		System.out.println(something);
+	}
+	
 
 }
